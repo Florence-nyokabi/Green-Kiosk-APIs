@@ -10,4 +10,4 @@ class Reviews_and_Ratings(models.Model):
     created_date = models.DateTimeField()
 
 class Meta:
-        verbose_name_plural = "reviews_and_ratings"
+        verbose_name_plural = "reviews_and_rating"

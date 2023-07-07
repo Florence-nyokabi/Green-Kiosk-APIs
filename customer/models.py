@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Customer(models.Model):
@@ -9,6 +10,7 @@ class Customer(models.Model):
     order_history= models.JSONField()
     payment_method=models.CharField(max_length=32)
     rating=models.FloatField()
+    user = models.OneToOneField(User, null= True, on_delete=models.CASCADE)
 
 class Meta:
         verbose_name_plural = "customer"
