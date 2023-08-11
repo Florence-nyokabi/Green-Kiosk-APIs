@@ -6,25 +6,72 @@
     <title>Document</title>
 </head>
 <body>
-    <table>
-        <th>
-            <td>Title</td>
-            <td>Description</td>
-            <td>Price</td>
-            <td>Image</td>
-            <td>Product Details</td>
-        </th>
-        {%for product  in products%}
-        <tr>
-            <td>{{product.name}}</td>
-            <td>{{product.description}}</td>
-            <td>{{product.price}}</td>
-            <td>{{product.image}}</td>
-            <td><a href="{% url 'product_detail_view' id=product.id %}">Product Details</a></td>
-       
-        </tr>
+    <h1>All Products Available</h1>
+    <div class="all_products">
+        {% for product in products %}
+            <div class="product_container">
+                <div class="image-box">
+                    <img src="{{product.image.url}}" class="img"/>
+                </div>
+                
+                <h1 class="product-name">{{ product.name }}</h1>
+                 <a href="{% url 'product_detail_view' id=product.id %}"><button class="viewbutton">View Details</button></a>
+                 <a href="{% url 'product_update' id=product.id %}"><button class="editbutton">Edit Details</button></a>
+                 <a href="{% url 'delete_product_view' id=product.id %}"><button class="deletebutton">Delete Details</button></a>
+                 
+                 <br>
+                 <br>
+                 <button class="add_to_cart">Add to Cart</button>
+            </div>
         {% endfor %}
-        
-    </table>
+    </div>
+
+
+    <style>
+        body {
+            font-family:'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 50px;
+            background-color: #ccc;
+        }
+
+        h1{
+            /* align-content: center; */
+            margin-left: 38%;
+        }
+
+        .image-box{
+            border: solid thin;
+        }
+
+        .add_to_cart{
+            margin-left: 34%;
+        }
+        button{
+            background-color: rgb(10, 66, 8);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 20px 50px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: rgb(194, 10, 10);
+        }
+
+        .all_products{
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 12%;   
+        }
+
+        .product_container{
+            padding: 70px;            
+        }
+
+    </style>
 </body>
 </html>
