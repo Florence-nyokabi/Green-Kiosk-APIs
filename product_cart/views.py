@@ -1,40 +1,51 @@
 from django.shortcuts import render, redirect
 from .models import Product_Cart
+from .models import Product
 from .forms import ProductCartForm
+from datetime import datetime
 
 # Create your views here.
+def add_to_cart(request, id):
+    product = Product.objects.get(id=id)
 
-def upload_products(request):
-    if request.method=="POST":
-        form = ProductCartForm(request.POST)
-        
-        if form.is_valid():
-            cart=form.save()
-            cart.save()
-    else:
-        form=ProductCartForm()
-    return render(request, "shoppingcart/upload_products.html",{"form":form})            
+    cart_item = Product_Cart (
+        product_name = product.name,
+        product_price = product.price,
+        product_image = product.image,
+        product_quantity = 1,
+        date_added=datetime.now(),
+    )
+    cart_item.save()
 
-    
-def display_cart_products(request):
-    cart= Product_Cart.objects.all()
-    return render (request, "shoppingcart/display_cart_products.html", {"cart":cart})
+    return redirect("product_list_view")
 
 
-def edit_cart_details(request,id):
-    cart= Product_Cart.objects.all(id = id)
-    
-    if request.method=="POST":
-         form= ProductCartForm(request.POST, instance=cart)
-         if form.is_valid():
-             form.save()
-         return redirect("cart_detail_view", id=cart.id)    
-     
-    else:
-        form = ProductCartForm(instance= cart)
-        return render(request, "shoppingcart/ edit_cart_details.html", {"form":form})
-    
-def clear_product_cart(request, id):
-    product_cart = Product_Cart.objects.get(id=id)
-    product_cart.delete()
-    return redirect("product_cart_list")
+def view_cart(request):
+    product_cart = Product_Cart.objects.all()
+
+    for item in product_cart:
+        item.total_price = item.product_price * item.product_quantity
+    return render(request, "product_cart/view_cart.html", {"product_cart": product_cart})
+
+
+def update_cart(request, id):
+    if request.method == 'POST':
+        quantity = int(request.POST.get('quantity', 1))
+        cart_item = Product_Cart.objects.get(id=id)
+        if quantity > 0:
+            cart_item.product_quantity = quantity
+            cart_item.save()
+        else:
+            cart_item.delete()
+    return redirect('view_cart')
+
+def remove_item(request, id):
+    cart_item = Product_Cart.objects.get(id=id)
+    cart_item.delete()
+
+    return redirect('view_cart')
+
+
+def empty_cart(request):
+    Product_Cart.objects.all().delete()
+    return redirect("view_cart")

@@ -3,31 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Document</title>
 </head>
 <body>
+    <nav>
+        <a href="{% url 'view_cart' %}"><button>View Cart</button></a>
+    </nav>
     <h1>All Products Available</h1>
     <div class="all_products">
         {% for product in products %}
             <div class="product_container">
                 <div class="image-box">
-                    <img src="{{product.image.url}}" class="img"/>
+                    <img src="{{ product.image.url }}" class="img"/>
                 </div>
                 
                 <h1 class="product-name">{{ product.name }}</h1>
                  <a href="{% url 'product_detail_view' id=product.id %}"><button class="viewbutton">View Details</button></a>
                  <a href="{% url 'product_update' id=product.id %}"><button class="editbutton">Edit Details</button></a>
-                 <a href="{% url 'delete_product_view' id=product.id %}"><button class="deletebutton">Delete Details</button></a>
-                 
+                 <a href="{% url 'delete_product_view' id=product.id %}"><button class="deletebutton">Delete Details</button></a>                 
                  <br>
                  <br>
-                 <button class="add_to_cart">Add to Cart</button>
+                 <!-- <button class="add_to_cart">Add to Cart</button> -->
+                 <a href="{% url 'add_to_cart' id=product.id %}"><button class="add_to_cart">Add to Cart</button></a>
             </div>
         {% endfor %}
     </div>
-
-
     <style>
+        nav{
+            float: right;
+        }
+        i {
+            font-size: xx-large;
+        }
         body {
             font-family:'Courier New', Courier, monospace;
             margin: 0;

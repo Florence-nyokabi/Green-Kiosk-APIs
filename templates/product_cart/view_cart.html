@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>My Cart</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in product_cart %}
+            <tr>
+                <td>{{ item.product_name }}</td>
+                <td>{{ item.product_price }}</td>
+                <td>{{ item.product_quantity }}</td>
+                <td>{{ item.total_price }}</td>
+                <td>{{ item.date_added }}</td>
+                <td>
+                    <form method="post" action="{% url 'update_cart' id=item.id %}">
+                        {% csrf_token %}
+                        <input type="number" name="quantity" value="{{ item.product_quantity }}" min="1">
+                        <button type="submit" class="update">Update</button>
+                    </form>
+                </td>
+                <td>
+                    <a href="{% url 'remove_item' id=item.id %}" class="remove">Remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+        
+    </table>
+    <br>
+    <br>
+    <div class="cart_buttons">
+        <a href="{% url 'product_list_view' %}"><button>Continue Shopping</button></a>
+        <a href="{}"><button>Proceed to Payment</button></a>
+        <a href="{% url 'empty_cart' %}"><button>Clear Cart</button></a>
+    </div>
+    
+
+    <style>
+        body {
+            font-family:'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 50px;
+            background-color: #ccc;
+        }
+        button{
+            background-color: rgb(10, 66, 8);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 20px 50px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: rgb(194, 10, 10);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            margin-left: 25%;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            padding: 30px;
+        }
+        input[type="number"] {
+            width: 60px;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        .remove{
+            color: rgb(10, 66, 8);
+            text-decoration: none;
+        }
+        .cart_buttons{
+            margin-left: 35%;
+        }
+    </style>
+    
+</body>
+</html>

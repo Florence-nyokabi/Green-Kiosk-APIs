@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect
 from .forms import ProductUploadForm
 from .models import Product
+from product_cart.models import Product_Cart
 
 # Create your views here.
 def product_upload_view(request):
     if request.method == "POST":
-        form = ProductUploadForm(request.POST)
+        form = ProductUploadForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            return redirect("product_list_view")
     else:
         form = ProductUploadForm()
     return render(request, "inventory/product_upload.html", {"form":form})
@@ -21,9 +23,10 @@ def product_details(request, id):
     return render(request, "inventory/product_details.html", {"product": product})
 
 def product_update_view(request, id):
-    product = Product.objects.all()
+    # product = Product.objects.all()
+    product = Product.objects.get(id=id)
     if request.method == "POST":
-        form = ProductUploadForm(request.POST, instance= product)
+        form = ProductUploadForm(request.POST, request.FILES, instance= product)
         if form.is_valid():
             form.save()
             return redirect("product_detail_view", id = product.id)

@@ -17,7 +17,8 @@
         <span>{{product.price}}</span>
         <br>
         <br>
-        <button>Add to Cart</button>
+        <a href="{% url 'add_to_cart' id=product.id %}"><button class="add_to_cart">Add to Cart</button></a>
+
     </div>
 
     <style>
