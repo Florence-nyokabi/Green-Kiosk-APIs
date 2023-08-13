@@ -22,10 +22,14 @@ def add_to_cart(request, id):
 
 def view_cart(request):
     product_cart = Product_Cart.objects.all()
+    
+    total_cart_price = 0
 
     for item in product_cart:
         item.total_price = item.product_price * item.product_quantity
-    return render(request, "product_cart/view_cart.html", {"product_cart": product_cart})
+        total_cart_price += item.total_price
+
+    return render(request, "product_cart/view_cart.html", {"product_cart": product_cart, "total_cart_price": total_cart_price})
 
 
 def update_cart(request, id):
