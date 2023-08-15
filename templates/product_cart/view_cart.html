@@ -37,10 +37,8 @@
                     <a href="{% url 'remove_item' id=item.id %}" class="remove">Remove</a>
                 </td>
             </tr>
-            {% endfor %}
-            
+            {% endfor %} 
         </tbody>
-        
     </table>
     <div class="total_price">
         <p>Total Cart Amount: Ksh {{ total_cart_price }}</p>
@@ -52,8 +50,6 @@
         <a href="{% url 'make_payment' %}"><button>Proceed to Payment</button></a>
         <a href="{% url 'empty_cart' %}"><button>Clear Cart</button></a>
     </div>
-    
-
     <style>
         body {
             font-family:'Courier New', Courier, monospace;
@@ -61,7 +57,7 @@
             padding: 50px;
             background-color: #ccc;
         }
-        button{
+        button {
             background-color: rgb(10, 66, 8);
             color: white;
             border: none;
@@ -71,7 +67,6 @@
             font-size: 16px;
             transition: background-color 0.3s ease;
         }
-
         button:hover {
             background-color: rgb(194, 10, 10);
         }
@@ -110,6 +105,5 @@
             margin-left: 25%;
         }
     </style>
-    
 </body>
 </html>
