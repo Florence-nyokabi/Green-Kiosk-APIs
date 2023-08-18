@@ -10,7 +10,7 @@ class Product(models.Model):
     # image=models.ImageField()
     image = models.ImageField(upload_to='media/images')
     date_created=models.DateTimeField(auto_now_add=True)
-    date_updated=models.DateTimeField(auto_now=True)
+    # date_updated=models.DateTimeField(auto_now=True)
     stock=models.PositiveIntegerField() 
     vendor = models.ForeignKey(Vendors, null=True, on_delete = models.CASCADE)
 

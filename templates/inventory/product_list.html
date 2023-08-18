@@ -10,7 +10,7 @@
     <nav>
         <a href="{% url 'view_cart' %}"><button>View Cart</button></a>
     </nav>
-    <h1>All Products Available</h1>
+    <h1>Products In Stock</h1>
     <div class="all_products">
         {% for product in products %}
             <div class="product_container">
@@ -21,7 +21,7 @@
                 <h1 class="product-name">{{ product.name }}</h1>
                  <a href="{% url 'product_detail_view' id=product.id %}"><button class="viewbutton">View Details</button></a>
                  <a href="{% url 'product_update' id=product.id %}"><button class="editbutton">Edit Details</button></a>
-                 <a href="{% url 'delete_product_view' id=product.id %}"><button class="deletebutton">Delete Details</button></a>                 
+                 <a href="{% url 'delete_product_view' id=product.id %}"><button class="deletebutton">Delete Item</button></a>                 
                  <br>
                  <br>
                  <a href="{% url 'add_to_cart' id=product.id %}"><button class="add_to_cart">Add to Cart</button></a>
@@ -49,6 +49,7 @@
 
         .image-box{
             border: solid thin;
+            border-radius: 12px;
         }
 
         .add_to_cart{
@@ -79,7 +80,9 @@
             padding: 70px;            
         }
         img{
-            width: 50%;
+            width: 30%;
+            padding: 20px;
+            margin-left: 30%;
         }
     </style>
 </body>
