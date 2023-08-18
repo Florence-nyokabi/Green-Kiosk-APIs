@@ -14,7 +14,7 @@ def make_payment(request):
         form = PaymentForm(request.POST)
         if form.is_valid():
             product_cart.delete()
-            return redirect('payment_success')
+            return redirect('')
     else:
         form = PaymentForm()
 
