@@ -4,8 +4,6 @@ from .models import Product
 from .forms import ProductCartForm
 
 
-# Create your views here.
-
 def add_to_cart(request, id):
     product = Product.objects.get(id=id)
 

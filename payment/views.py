@@ -4,7 +4,7 @@ from .models import Payment
 from .forms import PaymentForm
 from datetime import datetime
 
-# Create your views here.
+
 def make_payment(request):
     product_cart = ProductCart.objects.all()
 
