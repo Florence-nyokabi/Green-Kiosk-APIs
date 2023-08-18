@@ -16,7 +16,6 @@
                     <p class="product-name">{{ item.product_name }}</p>
                     <p class="product-price">Price: Ksh {{ item.product_price }}</p>
                     <p>Quantity: {{ item.product_quantity }}</p>
-                    <p>Total Price: Ksh {{ item.total_price }}</p>
                 </div>
 
                 <div class="cart-item-actions">
@@ -28,7 +27,7 @@
             {% endfor %}
         </div>
 
-        <p class="total-price">Total Cart Amount: </p>
+        
 
         <div class="cart-buttons">
             <a href="{% url 'product_list_view' %}" class="cart-button">Continue Shopping</a>
