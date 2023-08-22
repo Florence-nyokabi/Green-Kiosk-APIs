@@ -6,15 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Upload your products here</h1>
+    <h1>Add Your Vendors Here</h1>
     <form method="POST" enctype="multipart/form-data" class="upload_form">
         {%csrf_token%}
         {{form.as_p}}
         <button type="submit">Save</button>
     </form>
     <style>
-        
-    body {
+         body {
         font-family:'Courier New', Courier, monospace;
         margin: 0;
         padding: 50px;
@@ -22,7 +21,7 @@
     }
 
     h1{
-        margin-left: 22%;
+        margin-left: 40%;
 
     }
 
