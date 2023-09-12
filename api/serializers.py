@@ -4,6 +4,7 @@ from customer.models import Customer
 from product_cart.models import ProductCart
 from inventory.models import Product
 from orders.models import Order
+from delivery.models import Delivery
 
 
 class CustomerSerializer(serializers.ModelSerializer):
@@ -21,6 +22,7 @@ class InventorySerializer(serializers.ModelSerializer):
         model = Product
         fields = "__all__"
 
+    
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
