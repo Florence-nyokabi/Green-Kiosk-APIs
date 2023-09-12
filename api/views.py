@@ -16,7 +16,7 @@ from rest_framework import status
 class CustomerListView(APIView):
     def get(self, request):
         customers = Customer.objects.all()
-        serializer = CustomerSerializer(customers, many = True)  # this serializes the data
+        serializer = CustomerSerializer(customers, many = True)
         return Response(serializer.data)
     
     def post(self, request):
