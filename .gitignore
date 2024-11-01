@@ -1,3 +1,5 @@
-__pycache__
-myenv
-db.sqlite3
+myenv/
+media/
+*.sqlite3
+*.log
+images/
