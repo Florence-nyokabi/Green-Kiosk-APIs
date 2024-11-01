@@ -20,8 +20,5 @@ class Order(models.Model):
     delivery = models.OneToOneField(Delivery,  null=True, on_delete=models.CASCADE)
 
 
-
-
-
 class Meta:
         verbose_name_plural = "order"
