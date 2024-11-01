@@ -10,8 +10,8 @@ Green Kiosk is a Django-based e-commerce platform designed specifically for groc
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Florence-nyokabi/Green-Kiosk-APIs
-   cd Green-Kiosk-APIs
+   git clone https://github.com/Florence-nyokabi/Green-Kiosk-API
+   cd Green-Kiosk-API
    ```
 
 2. Set up a virtual environment:
